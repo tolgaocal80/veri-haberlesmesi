@@ -2,7 +2,7 @@ class Base{
   late int X;
   late int Y;
 
-  double? energy = 0;
+  double energy = 0;
 
   @override
   String toString() {

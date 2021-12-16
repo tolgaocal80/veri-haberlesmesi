@@ -3,7 +3,7 @@ class OptimalBase{
   late int Y;
   late int X;
 
-  double? energy = 0;
+  double energy = 0;
 
   @override
   String toString() {

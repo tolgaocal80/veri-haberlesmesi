@@ -29,24 +29,25 @@ class _MapScreenState extends State<MapScreen> {
   double energyConsumptionForPoint = 0;
 
   // Device list created
-  List<Device> deviceList = List.generate(10, (_) => Device());
+
+  late List<Device> deviceList = [];
 
   @override
   void initState(){
-    deviceCount = 10;
     super.initState();
+    deviceCount = 10;
   }
 
   TextEditingController controller = TextEditingController();
 
-  makeDevices(int number){
+  makeDevices(int number, List<Device> listOfDevice){
 
     HashMap locationEnergies = HashMap<double, Base>();
 
     for(int x=0; x<500; x++){
       for(int y=0; y<500; y++){
-        for(int i =0; i< deviceList.length ; i++) {
-          energyConsumptionForPoint += calculateEnergyForValue(deviceList[i], x, y);
+        for(int i =0; i< listOfDevice.length ; i++) {
+          energyConsumptionForPoint += calculateEnergyForValue(listOfDevice[i], x, y);
         }
         Base base = Base();
         base.X = x;
@@ -66,16 +67,15 @@ class _MapScreenState extends State<MapScreen> {
     _optimalBase.Y = _base.Y;
     _optimalBase.energy = _base.energy;
 
-
     // Calculating Energy Consumption for Center Base Station
-    for(int i =0; i< deviceList.length ; i++) {
-      deviceList[i].distanceFromCenterBase = calculateDistanceFromCenterBase(deviceList[i],centerBase);
-      deviceList[i].energyForCenterBase = calculateEnergyForCenterBase(deviceList[i], centerBase);
+    for(int i =0; i< listOfDevice.length ; i++) {
+      listOfDevice[i].distanceFromCenterBase = calculateDistanceFromCenterBase(listOfDevice[i],centerBase);
+      listOfDevice[i].energyForCenterBase = calculateEnergyForCenterBase(listOfDevice[i], centerBase);
 
-      deviceList[i].distanceFromOptimalBase = calculateDistanceFromOptimalBase(deviceList[i], _optimalBase);
-      deviceList[i].energyForOptimalBase = calculateEnergyForOptimalBase(deviceList[i], _optimalBase);
+      listOfDevice[i].distanceFromOptimalBase = calculateDistanceFromOptimalBase(listOfDevice[i], _optimalBase);
+      listOfDevice[i].energyForOptimalBase = calculateEnergyForOptimalBase(listOfDevice[i], _optimalBase);
 
-      energyConsumptionForPoint += deviceList[i].energyForCenterBase;
+      energyConsumptionForPoint += listOfDevice[i].energyForCenterBase;
     }
 
     centerBase.energy = energyConsumptionForPoint;
@@ -86,12 +86,11 @@ class _MapScreenState extends State<MapScreen> {
     centerBaseInfo = centerBase.toString();
     optimalBaseInfo = _optimalBase.toString();
 
-    var devices = List.generate(number, (index) =>
+    var devices = List.generate(listOfDevice.length, (index) =>
         Positioned(
           child: Container(
             child: GestureDetector(
               onTap: (){
-
               },
             ),
             width: 10,
@@ -100,8 +99,8 @@ class _MapScreenState extends State<MapScreen> {
                 shape: BoxShape.circle,
                 color: Colors.lightBlueAccent),
           ),
-          left: deviceList[index].X.toDouble()-5,
-          bottom: deviceList[index].Y.toDouble()-5,
+          left: listOfDevice[index].X.toDouble()-5,
+          bottom: listOfDevice[index].Y.toDouble()-5,
         ),
     );
     devices.add(Positioned(
@@ -160,34 +159,67 @@ class _MapScreenState extends State<MapScreen> {
                     child: Text("Change Device Number")
                 ),
 
+
                 // Energy and Distance Values
                 Column(
                   children: [
                     ElevatedButton(
                         onPressed: (){
-                          _optimalBase.X = _base.X;
-                          _optimalBase.Y = _base.Y;
-                          _optimalBase.energy = _base.energy;
-                          energyConsumptionForPoint = 0;
+                          setState(() {
+                            _optimalBase.X = _base.X;
+                            _optimalBase.Y = _base.Y;
+                            _optimalBase.energy = _base.energy;
+                            energyConsumptionForPoint = 0;
 
-                          for(int i =0; i< deviceList.length ; i++) {
-                            deviceList[i].distanceFromCenterBase = calculateDistanceFromCenterBase(deviceList[i],centerBase);
-                            deviceList[i].energyForCenterBase = calculateEnergyForCenterBase(deviceList[i], centerBase);
+                            for(int i =0; i< deviceList.length ; i++) {
+                              deviceList[i].distanceFromCenterBase = calculateDistanceFromCenterBase(deviceList[i],centerBase);
+                              deviceList[i].energyForCenterBase = calculateEnergyForCenterBase(deviceList[i], centerBase);
 
-                            deviceList[i].distanceFromOptimalBase = calculateDistanceFromOptimalBase(deviceList[i], _optimalBase);
-                            deviceList[i].energyForOptimalBase = calculateEnergyForOptimalBase(deviceList[i], _optimalBase);
+                              deviceList[i].distanceFromOptimalBase = calculateDistanceFromOptimalBase(deviceList[i], _optimalBase);
+                              deviceList[i].energyForOptimalBase = calculateEnergyForOptimalBase(deviceList[i], _optimalBase);
 
-                            energyConsumptionForPoint += deviceList[i].energyForCenterBase;
-                          }
-                          centerBase.energy = energyConsumptionForPoint;
-                          energyConsumptionForPoint = 0;
+                              energyConsumptionForPoint += deviceList[i].energyForCenterBase;
+                            }
+                            centerBase.energy = energyConsumptionForPoint;
+                            energyConsumptionForPoint = 0;
 
-                          print(centerBase.toString());
-                          print(_optimalBase.toString());
-
+                            print(centerBase.toString());
+                            print(_optimalBase.toString());
+                          });
                         },
                         child: Text("Calculate Energy Consumption")
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                    centerBase.energy == 0 ? CircularProgressIndicator() :  Container(
+                      padding: EdgeInsets.all(10),
+
+                      child: Text(
+                        centerBase.energy == 0 ? "" : centerBase.toString(), style: TextStyle(fontSize: 14,color: Colors.black),
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black,),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _optimalBase.energy == 0 ? CircularProgressIndicator() : Container(
+                      padding: EdgeInsets.all(10),
+
+                      child: Text(
+                        _optimalBase.energy == 0 ? "" : _optimalBase.toString(), style: TextStyle(fontSize: 14,color: Colors.black),
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black,),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                    ),
+
+
                   ],
                 ),
 
@@ -197,7 +229,7 @@ class _MapScreenState extends State<MapScreen> {
                       "Enerji Tüketimi Grafiğine Gidin",
                   ),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Graph()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Graph(deviceListToGraph: deviceList,)));
                   },
                 ),
 
@@ -208,7 +240,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
         // Devices
         Stack(
-            children: makeDevices(deviceCount)
+            children: makeDevices(deviceCount,deviceList)
         ),
         // Outer Border
         Positioned(

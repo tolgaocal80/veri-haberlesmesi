@@ -2,7 +2,7 @@ import 'package:veri_haberlesmesi/utils.dart';
 
 class CenterBase {
 
-  double? energy = 0;
+  double energy = 0;
 
   late int Y;
   late int X;
