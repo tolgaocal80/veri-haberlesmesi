@@ -1,7 +1,8 @@
-import 'package:veri_haberlesmesi/base.dart';
 import 'package:veri_haberlesmesi/utils.dart';
 
-class CenterBase extends Base{
+class CenterBase {
+
+  double? energy = 0;
 
   late int Y;
   late int X;
@@ -9,6 +10,12 @@ class CenterBase extends Base{
   CenterBase(){
     Y = (HEIGHT / 2) as int;
     X = (WIDTH / 2) as int;
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "Center Base Location\n X: $X Y: $Y \n Energy Consumption: $energy";
   }
 
 }
