@@ -1,4 +1,6 @@
 
+
+// THE OPTIMAL BASE STATION, WILL BE CALCULATED AFTER THE DEVICES DISTRIBUTED TO THE AREA
 class OptimalBase{
   late int Y;
   late int X;

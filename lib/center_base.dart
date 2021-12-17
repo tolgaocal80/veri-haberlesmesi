@@ -1,5 +1,9 @@
 import 'package:veri_haberlesmesi/utils.dart';
 
+// CENTER BASE LOCATION
+// THIS CLASS GENERATES A BASE STATION CENTERED TO GIVEN AREA
+// EVERY BASE STATION HAS 3 FIELD, "required energy",  "X coordinate", "Y coordinate"
+
 class CenterBase {
 
   double energy = 0;

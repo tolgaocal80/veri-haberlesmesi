@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'utils.dart';
 
+// THIS CLASS MEMBERS WILL BE TREATED AS A DEVICE (NODE, RECEIVER, USER etc..)
+// EVERY DEVICE HAS A X,Y COORDINATE AND DISTANCE AND ENERGY VALUES
 class Device{
 
   late int Y;
