@@ -182,19 +182,88 @@ class _MapScreenState extends State<MapScreen> {
         Positioned(
           left: 50,
           top: 50,
-          child: Container(
-            height: 50,
-            width: 200,
-            child: ElevatedButton(
-              child: const Text(
-                "Go to Energy Consumption Graph for Center Base",
+          child: Column(
+          children: [
+
+            Container(
+              height: 50,
+              width: 200,
+              child: ElevatedButton(
+                child: const Text(
+                  "Go to Energy Consumption Graph for Center Base",
+                ),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Graph(deviceListToGraph: deviceList,order: order,)));
+                },
               ),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Graph(deviceListToGraph: deviceList,order: order,)));
-              },
             ),
-          )
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 5, left: 5),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.lightBlueAccent,
+                      ),
+                    ),
+                    Text(
+                      "Devices", style: TextStyle(fontSize: 12, color: Colors.black),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 5),
+                      width: 30,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      "Center Base Station", style: TextStyle(fontSize: 12, color: Colors.black),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 5),
+                      width: 30,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.green),
+                    ),
+                    Text(
+                      "Optimal Base Station", style: TextStyle(fontSize: 12, color: Colors.black),
+                    )
+                  ],
+                ),
+              ],
+            )
+          ],
+          ),
         ),
+
 
         // Buttons
         Positioned(
