@@ -5,6 +5,7 @@ import 'package:veri_haberlesmesi/base.dart';
 import 'package:veri_haberlesmesi/devices.dart';
 import 'package:veri_haberlesmesi/graph.dart';
 import 'package:veri_haberlesmesi/optimal_base.dart';
+import 'package:veri_haberlesmesi/singleton.dart';
 import 'package:veri_haberlesmesi/utils.dart';
 import 'center_base.dart';
 
@@ -33,8 +34,10 @@ class _MapScreenState extends State<MapScreen> {
 
   double energyConsumptionForPoint = 0;
 
+
   // Device list
-  late List<Device> deviceList = [];
+  List<Device> deviceList = Singleton.instance.deviceListSingleton;
+
 
   @override
   void initState(){
@@ -44,8 +47,6 @@ class _MapScreenState extends State<MapScreen> {
 
   TextEditingController controller = TextEditingController();
   TextEditingController orderController = TextEditingController();
-
-
 
   makeDevices(int number, List<Device> listOfDevice){
 
@@ -145,7 +146,7 @@ class _MapScreenState extends State<MapScreen> {
                   Material(
                     child: TextFormField(
                       decoration: const InputDecoration(
-                        label: Text("Enter Energy Order (distance'x)"),
+                        label: Text("Enter Energy Order (distance^x)"),
                         border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                       ),
                       controller: orderController,
@@ -159,17 +160,18 @@ class _MapScreenState extends State<MapScreen> {
                             order = int.parse(orderController.text);
                           });
                         }
+                        print("Distance Order : $order");
                       },
-                      child: Text("Change Distance Order")
+                      child: const Text("Change Distance Order")
                   ),
                   Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Text(
-                      order == 2 ? "2" : "Distance Order : " + order.toString(), style: TextStyle(fontSize: 14,color: Colors.black),
+                      order == 2 ? "2" : "Distance Order : " + order.toString(), style: const TextStyle(fontSize: 14,color: Colors.black),
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black,),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                     ),
                   ),
                 ],
@@ -207,7 +209,7 @@ class _MapScreenState extends State<MapScreen> {
                 Material(
                   child: TextFormField(
                     decoration: const InputDecoration(
-                      label: Text("Cihaz Sayısı Giriniz"),
+                      label: Text("Enter Device Quantity"),
                       border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
                     ),
                     controller: controller,
@@ -226,9 +228,10 @@ class _MapScreenState extends State<MapScreen> {
                         }else{
                           return;
                         }
+                        print("Distance Order : $order");
                       });
                     },
-                    child: Text("Change Device Number")
+                    child: const Text("Change Device Quantity")
                 ),
                 const SizedBox(
                   height: 10,
@@ -258,8 +261,9 @@ class _MapScreenState extends State<MapScreen> {
                             print(centerBase.toString());
                             print(_optimalBase.toString());
                           });
+                          print("Distance Order : $order");
                         },
-                        child: Text("Calculate Energy Consumption")
+                        child: const Text("Calculate Energy Consumption")
                     ),
                 const SizedBox(
                   height: 20,
@@ -284,11 +288,11 @@ class _MapScreenState extends State<MapScreen> {
                 _optimalBase.energy == 0 ? const CircularProgressIndicator() : Container(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    _optimalBase.energy == 0 ? "" : _optimalBase.toString(), style: TextStyle(fontSize: 14,color: Colors.black),
+                    _optimalBase.energy == 0 ? "" : _optimalBase.toString(), style: const TextStyle(fontSize: 14,color: Colors.black),
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black,),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    borderRadius: const BorderRadius.all( Radius.circular(20)),
                   ),
                 ),
 

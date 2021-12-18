@@ -110,8 +110,6 @@ class _GraphState extends State<Graph> {
                   centerEnergyList.clear();
                   calculateEnergy(widget.deviceListToGraph);
                   matchEnergyValues(centerEnergyList, widget.deviceListToGraph, values);
-                  print(centerEnergyList.length);
-                  print(widget.deviceListToGraph.length);
                 });
               },
             ),
