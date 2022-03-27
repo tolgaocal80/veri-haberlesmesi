@@ -1,7 +1,9 @@
 # veri_haberlesmesi
 
 
-![](https://drive.google.com/file/d/1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky/preview)
+![](https://docs.google.com/uc?export=download&id=1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky)
+
+https://docs.google.com/uc?export=download&id=1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky
 
 ## Data-Communications Project
 
