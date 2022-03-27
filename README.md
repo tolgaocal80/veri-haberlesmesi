@@ -1,7 +1,7 @@
 # veri_haberlesmesi
 
 
-![](https://gifyu.com/image/SpnWH.gif)
+![](https://github.com/tolgaocal80/veri-haberlesmesi/blob/master/Flutter%20Demo.gif)
 
 
 ## Data-Communications Project
