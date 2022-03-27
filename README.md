@@ -1,9 +1,8 @@
 # veri_haberlesmesi
 
 
-![](https://docs.google.com/uc?export=download&id=1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky)
+![](https://gifyu.com/image/SpnWH.gif)
 
-https://docs.google.com/uc?export=download&id=1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky
 
 ## Data-Communications Project
 
