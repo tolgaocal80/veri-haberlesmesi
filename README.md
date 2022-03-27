@@ -1,6 +1,7 @@
 # veri_haberlesmesi
 
-<iframe src="https://drive.google.com/file/d/1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky/preview" width="640" height="480"></iframe>
+
+![](https://drive.google.com/file/d/1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky/preview)
 
 ## Data-Communications Project
 
