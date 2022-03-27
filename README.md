@@ -1,5 +1,7 @@
 # veri_haberlesmesi
 
+<iframe src="https://drive.google.com/file/d/1FQFOSO4Wev08ISxIpywHnDFl-XGM2dky/preview" width="640" height="480"></iframe>
+
 ## Data-Communications Project
 
 1)  In this project, we will create a random generated  list of "Receiver Devices"  than, this devices will be distributed to a 500 x 500 area.
